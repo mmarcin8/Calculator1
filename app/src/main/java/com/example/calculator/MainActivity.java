@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private String lastLetter;
 
     //użyte znaki
-    final String znakDzielenie = "÷";
-    final String znakMnożenie = "×";
-    final String znakOdejmowanie = "−";
+    final String znakDzielenie = "/";
+    final String znakMnożenie = "*";
+    final String znakOdejmowanie = "-";
     final String znakDodawanie = "+";
     final String kropka = ".";
 
@@ -146,6 +146,12 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         calculations.append(b.getText().toString());
                 }
+
+//JAK ZROBIĆ ŻEBY WYKONYWAŁO OBLICZENIA??
+
+                double result_d = Double.parseDouble(b.getText().toString());
+//                float result_f = Float.parseFloat(result_d);
+//                result.setText(String.valueOf(result_f));
 
             }
         };
