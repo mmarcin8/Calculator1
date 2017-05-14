@@ -147,8 +147,6 @@ public class MainActivity extends AppCompatActivity {
                         calculations.append(b.getText().toString());
                 }
 
-//JAK ZROBIĆ ŻEBY WYKONYWAŁO OBLICZENIA??
-
             }
         };
 
