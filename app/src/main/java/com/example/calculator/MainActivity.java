@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String lastLetter;
 
-    //użyte znaki nie zmieniaj ich bo wtedy nie będzie działać kod niżej
+    //użyte znaki
+    //nie zmieniaj ich bo wtedy nie będzie działać kod niżej
     final String znakDzielenie = "÷";
     final String znakMnożenie = "×";
     final String znakOdejmowanie = "−";
