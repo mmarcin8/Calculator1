@@ -150,13 +150,20 @@ public class MainActivity extends AppCompatActivity {
                         calculations.append(b.getText().toString());
                 }
 
-                //obliczenia wzięte stąd: https://github.com/uklimaschewski/EvalEx
+                //źródło: https://github.com/uklimaschewski/EvalEx
                 String finalResult = calculations.getText().toString().replace('×','*').replace('÷','/').replace('−','-').replace('+','+');
-                System.out.println(finalResult);
                 Expression expression = new Expression(finalResult);
                 if (!lastLetter.equals(kropka) && !lastLetter.equals(znakDzielenie) && lastLetter.equals(znakMnożenie) && !lastLetter.equals(znakDodawanie) && !lastLetter.equals(znakOdejmowanie)) {
-                    result.setText(expression.eval().toString());
+                    result.setText(expression.eval().toString()); //czemu działa tylko mnożenie?
                 }
+
+//wg mnie kod powinien być taki, ale jak jest taki to crashuje. Nie wiem czemu
+//                String finalResult = calculations.getText().toString().replace('×','*').replace('÷','/').replace('−','-').replace('+','+');
+//                Expression expression = new Expression(finalResult);
+//                if (!lastLetter.equals(kropka) && !lastLetter.equals(znakDzielenie) //&& lastLetter.equals(znakMnożenie)
+//                        && !lastLetter.equals(znakDodawanie) && !lastLetter.equals(znakOdejmowanie) && !lastLetter.equals("DEL")){
+//                    result.setText(expression.eval().toString());
+//                }
 
 
 
