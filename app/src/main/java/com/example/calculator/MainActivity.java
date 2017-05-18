@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.udojava.evalex.Expression;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText calculations;
@@ -148,7 +150,17 @@ public class MainActivity extends AppCompatActivity {
                         calculations.append(b.getText().toString());
                 }
 
-            }
+                //obliczenia wzięte stąd: https://github.com/uklimaschewski/EvalEx
+                String finalResult = calculations.getText().toString().replace('×','*').replace('÷','/').replace('−','-').replace('+','+');
+                System.out.println(finalResult);
+                Expression expression = new Expression(finalResult);
+                if (!lastLetter.equals(kropka) && !lastLetter.equals(znakDzielenie) && lastLetter.equals(znakMnożenie) && !lastLetter.equals(znakDodawanie) && !lastLetter.equals(znakOdejmowanie)) {
+                    result.setText(expression.eval().toString());
+                }
+
+
+
+            } //onclick ends
         };
 
 

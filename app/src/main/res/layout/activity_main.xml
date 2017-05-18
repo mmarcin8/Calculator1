@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -35,16 +35,19 @@
 
 
     <TextView
-            android:id="@+id/result"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:textSize="40dp"
-            android:focusable="false"
-            android:gravity="right|bottom"
-            android:focusableInTouchMode="false"
-            android:inputType="numberDecimal|numberSigned" />
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:fontFamily="sans-serif-light"
+        android:gravity="right|center_vertical"
+        android:inputType="numberDecimal|numberSigned"
+        android:textSize="35dp" />
 
 
     <LinearLayout
@@ -196,9 +199,9 @@
 
             <Button
                 android:id="@+id/button_divide"
-                android:layout_width="71dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.00"
+                android:layout_weight="1"
                 android:text="÷"
                 android:theme="@style/AppTheme.Button.Right" />
 
