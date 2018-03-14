@@ -2,12 +2,13 @@ package com.example.calculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.udojava.evalex.Expression;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,20 +22,18 @@ public class MainActivity extends AppCompatActivity {
     private String operationSign = null;
 
     private String lastLetter;
+    private String lastSymbol;
 
-    //użyte znaki
-    // nie zmieniaj ich bo wtedy nie będzie działać kod niżej
-    final String znakDzielenie = "÷";
-    final String znakMnożenie = "×";
-    final String znakOdejmowanie = "−";
-    final String znakDodawanie = "+";
-    final String kropka = ".";
+    final String divisionSymbol = "÷";
+    final String multiplicationSymbol = "×";
+    final String subtractionSymbol = "−";
+    final String addSymbol = "+";
+    final String dot = ".";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         calculations = (EditText) findViewById(R.id.calculations);
@@ -72,76 +71,73 @@ public class MainActivity extends AppCompatActivity {
                 String currentCalculations = calculations.getText().toString();
 
 
-
-                if (currentCalculations.length() > 0){
+                if (currentCalculations.length() > 0) {
                     lastLetter = Character.toString(currentCalculations.charAt(currentCalculations.length() - 1));
                 }
 
                 switch (b.getText().toString()) {
                     case "DEL":
                         if (currentCalculations.length() != 0) {
-                            calculations.setText(currentCalculations.substring(0,currentCalculations.length()-1));
+                            calculations.setText(currentCalculations.substring(0, currentCalculations.length() - 1));
+                            lastSymbol = "";
                         }
                         break;
 
-                    case kropka:
+                    case dot:
                         if (currentCalculations.length() != 0) {
-                            if (!lastLetter.equals(kropka) && !Character.toString(currentCalculations.charAt(currentCalculations.length() - 2)).equals(kropka))
-                            {
+                            if (!lastLetter.equals(dot) && !Character.toString(currentCalculations.charAt(currentCalculations.length() - 2)).equals(dot)) {
                                 calculations.append(b.getText().toString());
+                                lastSymbol = ".";
                             }
+
                         }
                         break;
 
-                    case znakDzielenie:
+                    case divisionSymbol:
                         if (currentCalculations.length() != 0) {
-                            if (lastLetter.equals(kropka) || lastLetter.equals(znakMnożenie) || lastLetter.equals(znakDodawanie) || lastLetter.equals(znakOdejmowanie))
-                            {
-                                calculations.setText(currentCalculations.substring(0,currentCalculations.length()-1));
+                            if (lastLetter.equals(dot) || lastLetter.equals(multiplicationSymbol) || lastLetter.equals(addSymbol) || lastLetter.equals(subtractionSymbol)) {
+                                calculations.setText(currentCalculations.substring(0, currentCalculations.length() - 1));
                             }
-                            if (!lastLetter.equals(znakDzielenie))
-                            {
+                            if (!lastLetter.equals(divisionSymbol)) {
                                 calculations.append(b.getText().toString());
-                            }
-                        }
-                        break;
-
-                    case znakMnożenie:
-                        if (currentCalculations.length() != 0) {
-                            if (lastLetter.equals(kropka) || lastLetter.equals(znakDzielenie) || lastLetter.equals(znakDodawanie) || lastLetter.equals(znakOdejmowanie))
-                            {
-                                calculations.setText(currentCalculations.substring(0,currentCalculations.length()-1));
-                            }
-                            if (!lastLetter.equals(znakMnożenie))
-                            {
-                                calculations.append(b.getText().toString());
+                                lastSymbol = "/";
                             }
                         }
                         break;
 
-                    case znakDodawanie:
+                    case multiplicationSymbol:
                         if (currentCalculations.length() != 0) {
-                            if (lastLetter.equals(kropka) || lastLetter.equals(znakMnożenie) || lastLetter.equals(znakDzielenie) || lastLetter.equals(znakOdejmowanie))
-                            {
-                                calculations.setText(currentCalculations.substring(0,currentCalculations.length()-1));
+                            if (lastLetter.equals(dot) || lastLetter.equals(divisionSymbol) || lastLetter.equals(addSymbol) || lastLetter.equals(subtractionSymbol)) {
+                                calculations.setText(currentCalculations.substring(0, currentCalculations.length() - 1));
                             }
-                            if (!lastLetter.equals(znakDodawanie))
-                            {
+                            if (!lastLetter.equals(multiplicationSymbol)) {
                                 calculations.append(b.getText().toString());
+                                lastSymbol = "*";
+                            }
+                        }
+                        break;
+
+                    case addSymbol:
+                        if (currentCalculations.length() != 0) {
+                            if (lastLetter.equals(dot) || lastLetter.equals(multiplicationSymbol) || lastLetter.equals(divisionSymbol) || lastLetter.equals(subtractionSymbol)) {
+                                calculations.setText(currentCalculations.substring(0, currentCalculations.length() - 1));
+                            }
+                            if (!lastLetter.equals(addSymbol)) {
+                                calculations.append(b.getText().toString());
+                                lastSymbol = "+";
                             }
                         }
                         break;
 
 
-                    case znakOdejmowanie:
+                    case subtractionSymbol:
                         if (currentCalculations.length() != 0) {
-                            if (lastLetter.equals(kropka) || lastLetter.equals(znakMnożenie) || lastLetter.equals(znakDodawanie) || lastLetter.equals(znakDzielenie))
-                            {
-                                calculations.setText(currentCalculations.substring(0,currentCalculations.length()-1));
+                            if (lastLetter.equals(dot) || lastLetter.equals(multiplicationSymbol) || lastLetter.equals(addSymbol) || lastLetter.equals(divisionSymbol)) {
+                                calculations.setText(currentCalculations.substring(0, currentCalculations.length() - 1));
                             }
-                            if (!lastLetter.equals(znakOdejmowanie))
-                            {
+                            if (!lastLetter.equals(subtractionSymbol)) {
                                 calculations.append(b.getText().toString());
+                                lastSymbol = "-";
                             }
                         }
                         break;
@@ -150,45 +146,23 @@ public class MainActivity extends AppCompatActivity {
                         calculations.append(b.getText().toString());
                 }
 
-                //źródło: https://github.com/uklimaschewski/EvalEx
-                String finalResult = calculations.getText().toString().replace('×','*').replace('÷','/').replace('−','-').replace('+','+');
-                Expression expression = new Expression(finalResult);
-                if (!lastLetter.equals(kropka) && !lastLetter.equals(znakDzielenie) && lastLetter.equals(znakMnożenie) && !lastLetter.equals(znakDodawanie) && !lastLetter.equals(znakOdejmowanie)) {
-                    result.setText(expression.eval().toString()); //czemu działa tylko mnożenie?
-                }
-
-//wg mnie kod powinien być taki, ale jak jest taki to crashuje. Nie wiem czemu
-//                String finalResult = calculations.getText().toString().replace('×','*').replace('÷','/').replace('−','-').replace('+','+');
-//                Expression expression = new Expression(finalResult);
-//                if (!lastLetter.equals(kropka) && !lastLetter.equals(znakDzielenie) //&& lastLetter.equals(znakMnożenie)
-//                        && !lastLetter.equals(znakDodawanie) && !lastLetter.equals(znakOdejmowanie) && !lastLetter.equals("DEL")){
-//                    result.setText(expression.eval().toString());
-//                }
-
-
+                Log.e("tag", String.valueOf(Integer.parseInt(calculations.getText().toString().replace(divisionSymbol, "/").replace(multiplicationSymbol, "*").replace(addSymbol, "+").replace(subtractionSymbol, "-"))));
 
             } //onclick ends
         };
 
 
-                for (int b = 0; b < 17; b++) {
-                    button[b].setOnClickListener(listener);
-                }
+        for (int b = 0; b < 17; b++) {
+            button[b].setOnClickListener(listener);
+        }
 
-
-        View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
+        button[12].setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public boolean onLongClick(View view) {
                 calculations.setText("");
                 return true;
             }
-        };
-
-        button[12].setOnLongClickListener(onLongClickListener);
-
-
-
-
+        });
 
 
     }

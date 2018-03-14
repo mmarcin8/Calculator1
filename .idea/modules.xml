@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Calculator.iml" filepath="$PROJECT_DIR$/Calculator.iml" />
+      <module fileurl="file://C:\Users\Maciek\Documents\GitHub\Calculator1\Calculator.iml" filepath="C:\Users\Maciek\Documents\GitHub\Calculator1\Calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Calculator1.iml" filepath="$PROJECT_DIR$/Calculator1.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/calculator1.iml" filepath="$PROJECT_DIR$/calculator1.iml" />
+      <module fileurl="file://C:\Users\Maciek\Documents\GitHub\Calculator1\app\app.iml" filepath="C:\Users\Maciek\Documents\GitHub\Calculator1\app\app.iml" />
+      <module fileurl="file://C:\Users\Maciek\Documents\GitHub\Calculator1\calculator1.iml" filepath="C:\Users\Maciek\Documents\GitHub\Calculator1\calculator1.iml" />
     </modules>
   </component>
 </project>
