@@ -6,7 +6,7 @@ Contains no ads or unnecessary permissions. It is fully opensource.<br>
 
 License
 -------
-    Copyright 2018 mmarcin8 & kalucky0
+    Copyright 2018 whiteeagle44 & kalucky0
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
